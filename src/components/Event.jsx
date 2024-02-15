@@ -3,6 +3,11 @@ import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 export default function Event(props) {
     const[e,setEvent]=useState(props.event)
+    const likeEvent=()=>{
+        setEvent((pe)=>({...pe,
+            like: !pe.like
+            }))
+    }
     const bookEvent=()=>{
         props.fnAlert();
         setEvent((pe)=>({...pe,
@@ -23,6 +28,7 @@ export default function Event(props) {
           <Card.Text>Number of participants: {e.nbParticipants}</Card.Text>  
           
           <Button onClick={bookEvent}>Go somewhere</Button>
+          <Button variant='danger'onClick={likeEvent}>{e.like==true?"👎dislike":"👍like"}</Button>
         </Card.Body>
       </Card>
     </>
